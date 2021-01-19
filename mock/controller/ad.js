@@ -1,11 +1,11 @@
 const data = [
   {
-    title: 'vue-admin-beautiful-pro 1.7版本已发布，点我提前体验',
-    url: 'https://chu1204505056.gitee.io/vue-admin-beautiful-pro/#/index',
+    type:'',
+    title: 'DCS、SIS、FGS、CCTV、安防等系统,点击查看详情',
   },
   {
-    title: 'vue-admin-beautiful（antdv） vue3.0版本已发布，点我提前体验',
-    url: 'https://chu1204505056.gitee.io/vue-admin-beautiful-mini/#/index',
+    type:'danger',
+    title: '办公A区电子围栏报警,点击查看详情',
   },
 ]
 module.exports = [

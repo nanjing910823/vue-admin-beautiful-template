@@ -9,7 +9,7 @@
       indicator-position="none"
     >
       <el-carousel-item v-for="(item, index) in adList" :key="index">
-        <el-tag type="warning">Ad</el-tag>
+        <el-tag :type="item.type">{{item.type === 'danger'?'报警信息':'公告信息'}}</el-tag>
         <a target="_blank" :href="item.url">{{ item.title }}</a>
       </el-carousel-item>
     </el-carousel>
