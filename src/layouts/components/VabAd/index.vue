@@ -46,6 +46,7 @@
     cursor: pointer;
 
     a {
+      margin-left: 10px;
       color: #999;
     }
   }
