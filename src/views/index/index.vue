@@ -1,26 +1,13 @@
 <template>
   <div class="more-container">
    <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-          <sunbim-intro />
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+          <project-info />
       </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
-        <el-card>
-          <div slot="header">
-            VIP群（自愿原则）
-            <el-button style="float: right; padding: 3px 0" type="text">￥100</el-button>
-          </div>
-          <div>
-            <ul>
-              <li>支持以上所有特权</li>
-              <li>支持四种主题</li>
-              <li>vip群提供终身技术支持、专属文档及视频教程，可快速入手框架，包含打包优化，公共外框布局layout本地化及自定义教程等</li>
-              <li>QQ咨询 1204505056</li>
-            </ul>
-          </div>
-        </el-card>
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+        <leader-info />
       </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
         <el-card>
           <div slot="header">
             开源版不保留MIT协议，变更作者（自愿原则）
@@ -38,7 +25,7 @@
       </el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
         <el-card>
           <div slot="header">
             PRO版
