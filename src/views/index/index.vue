@@ -67,8 +67,9 @@ export default {
 .more-container {
   ::v-deep {
     .el-card__body {
+      padding:5px 10px;
       > div {
-        min-height: 220px;
+        height: 280px;
 
         > ul {
           > li {

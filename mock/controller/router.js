@@ -13,7 +13,7 @@ const data = [{
       },
     }, ],
   },
-  {
+  /* {
     path: '/bimView',
     component: 'Layout',
     redirect: 'noRedirect',
@@ -262,7 +262,7 @@ const data = [{
         },
       },
     ],
-  },
+  }, */
   /* {
      path: '/error',
      component: 'EmptyLayout',
