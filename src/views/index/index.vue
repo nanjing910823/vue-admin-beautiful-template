@@ -1,12 +1,9 @@
 <template>
   <div class="more-container">
-   <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
-          <project-info />
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
-        <leader-info />
-      </el-col>
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8"><project-info /></el-col>
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8"><leader-info /></el-col>
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"><elec-info /></el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
         <el-card>
           <div slot="header">
@@ -67,7 +64,7 @@ export default {
 .more-container {
   ::v-deep {
     .el-card__body {
-      padding:5px 10px;
+      padding: 5px 10px;
       > div {
         height: 280px;
 
