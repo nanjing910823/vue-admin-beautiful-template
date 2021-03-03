@@ -39,112 +39,20 @@ const leaderInfoList = mock({
   }]
 })
 
-const elecInfoByMonthList = [{
-    "month": "2020/04",
-    "value": 0,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/04",
-    "value": 0,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/04",
-    "value": 0,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/05",
-    "value": 880,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/05",
-    "value": 650,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/05",
-    "value": 1000,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/06",
-    "value": 1200,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/06",
-    "value": 800,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/06",
-    "value": 2120,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/07",
-    "value": 1520,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/07",
-    "value": 980,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/07",
-    "value": 2520,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/08",
-    "value": 1820,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/08",
-    "value": 1360,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/08",
-    "value": 2960,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/09",
-    "value": 2030,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/09",
-    "value": 1460,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/09",
-    "value": 3100,
-    "category": "电表3"
-  },
-  {
-    "month": "2020/10",
-    "value": 2050,
-    "category": "电表1"
-  },
-  {
-    "month": "2020/10",
-    "value": 1560,
-    "category": "电表2"
-  },
-  {
-    "month": "2020/10",
-    "value": 3510,
-    "category": "电表3"
-  },
-]
+const elecInfoByMonthList = [
+  { month: '1', value: 1078 },
+  { month: '2', value: 1216 },
+  { month: '3', value: 758 },
+  { month: '4', value: 623 },
+  { month: '5', value: 319 },
+  { month: '6', value: 422 },
+  { month: '7', value: 500},
+  { month: '8', value: 217 },
+  { month: '9', value: 358 },
+  { month: '10', value: 1513 },
+  { month: '11', value: 1388 },
+  { month: '12', value: 597 },
+];
 
 module.exports = [{
   url: '/component/getLeaderInfoList',
