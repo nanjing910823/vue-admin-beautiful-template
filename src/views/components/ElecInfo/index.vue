@@ -6,13 +6,14 @@
         电表监测
       </span>
       <div>
-        <el-button :type=" currentBtn === 0? 'primary':'plain'" @click="currentClick">实时</el-button>
-        <el-button :type=" currentBtn === 1? 'primary':'plain'" @click="monthClick">月</el-button>
-        <el-button :type=" currentBtn ===2? 'primary':'plain'">日</el-button>
+        <el-button :type=" currentIndex === 0 ? 'primary':'plain'" @click="currentClick">实时</el-button>
+        <el-button :type=" currentIndex === 1 ? 'primary':'plain'" @click="monthClick">月</el-button>
+        <el-button :type=" currentIndex === 2 ? 'primary':'plain'">日</el-button>
       </div>
     </div>
-    <div v-show="chartType==='current'" id="elecCurrentChart"></div>
-    <div v-show="chartType==='month'" id="elecMonthChart"></div>
+    <div id="elecChart"></div>
+    <!-- <div v-show="chartType==='current'" id="elecCurrentChart"></div>
+    <div v-show="chartType==='month'" id="elecMonthChart"></div> -->
   </el-card>
 </template>
 
@@ -24,13 +25,15 @@
     Line,
     Column
   } from '@antv/g2plot';
+  let line = null;
+  let columnPlot = null;
   export default {
     name: 'ElecInfo',
     data() {
       return {
-        currentBtn: 0,
+        currentIndex: 0,
         chartType: 'current',
-        elecInfoByMonthList: []
+        elecInfoByMonthList: [],
       };
     },
     mounted() {
@@ -45,18 +48,22 @@
         this.drawCurrentChart();
       },
       currentClick() {
-        this.currentBtn = 0
+       if (this.currentIndex == 0) return;
+        columnPlot.destroy()
+        this.currentIndex = 0
         this.chartType = "current"
         this.drawCurrentChart()
       },
       monthClick() {
-        this.currentBtn =1
+       if (this.currentIndex == 1) return;
+       clearInterval(this._wzlFetchInte)
+        line.destroy();
+        this.currentIndex = 1
         this.chartType = "month"
         this.drawMonthChart()
       },
       drawCurrentChart() {
-        let that = this;
-        const line = new Line('elecCurrentChart', {
+        line = new Line('elecChart', {
           data: this.getCurrentData(),
           padding: 'auto',
           xField: 'x',
@@ -65,12 +72,12 @@
             type: 'time',
             mask: 'HH:MM:ss',
           },
-          stepType: 'vh',
+          stepType: 'hv',
         });
 
         line.render();
-        setInterval(() => {
-          const x = new Date().getTime(), // current time
+        this._wzlFetchInte = setInterval(()=>{
+          const x = new Date().getTime(),
             y = Math.random() + 0.2;
           const newData = line.options.data.slice(1).concat({
             x,
@@ -80,7 +87,7 @@
         }, 2000);
       },
       drawMonthChart() {
-        const columnPlot = new Column('elecMonthChart', {
+        columnPlot = new Column('elecChart', {
           data: this.elecInfoByMonthList,
           padding: 'auto',
           xField: 'month',
@@ -111,7 +118,7 @@
             y: Math.random() + 0.2,
           });
         }
-        return data;
+        return data
       }
     }
   };
