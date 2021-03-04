@@ -6,124 +6,206 @@
         电表监测
       </span>
       <div>
-        <el-button :type=" currentIndex === 0 ? 'primary':'plain'" @click="currentClick">实时</el-button>
-        <el-button :type=" currentIndex === 1 ? 'primary':'plain'" @click="monthClick">月</el-button>
-        <el-button :type=" currentIndex === 2 ? 'primary':'plain'">日</el-button>
+        <el-button :type="currentIndex === 0 ? 'primary' : 'plain'" @click="btnClick(0)">实时</el-button>
+        <el-button :type="currentIndex === 1 ? 'primary' : 'plain'" @click="btnClick(1)">日</el-button>
+        <el-button :type="currentIndex === 2 ? 'primary' : 'plain'" @click="btnClick(2)">月</el-button>
       </div>
     </div>
     <div id="elecChart"></div>
-    <!-- <div v-show="chartType==='current'" id="elecCurrentChart"></div>
-    <div v-show="chartType==='month'" id="elecMonthChart"></div> -->
   </el-card>
 </template>
 
 <script>
-  import {
-    getElecInfoByMonth
-  } from '@/api/component';
-  import {
-    Line,
-    Column
-  } from '@antv/g2plot';
-  let line = null;
-  let columnPlot = null;
-  export default {
-    name: 'ElecInfo',
-    data() {
-      return {
-        currentIndex: 0,
-        chartType: 'current',
-        elecInfoByMonthList: [],
+import moment from 'moment';
+import { getElecInfoByMonth, getElecInfoByDay } from '@/api/component';
+import { Line, Column } from '@antv/g2plot';
+let monthChart = null;
+let currentChart = null;
+let dayChart = null;
+export default {
+  name: 'ElecInfo',
+  data() {
+    return {
+      lastIndex:0,
+      currentIndex: 0,
+      //elecInfoByMonthList: []
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.drawCurrentChart();
+    },
+    btnClick(index){
+      if(this.currentIndex === index) return;
+      this.lastIndex = this.currentIndex;
+      this.currentIndex = index;
+      switch (this.lastIndex){
+        case 0:
+          currentChart.destroy();
+          break;
+        case 1:
+         dayChart.destroy();
+          break;
+        case 2:
+         monthChart.destroy();
+          break;
+        default:
+          break;
+      }
+      switch (index){
+        case 0:
+          this.drawCurrentChart();
+          break;
+        case 1:
+          this.drawDayChart();
+          break;
+        case 2:
+          this.drawMonthChart();
+          break;
+        default:
+          break;
+      }
+    },
+    currentClick() {
+      if (this.currentIndex == 0) return;
+      if (dayChart) dayChart.destroy();
+      if (monthChart) monthChart.destroy();
+      this.currentIndex = 0;
+      this.drawCurrentChart();
+    },
+    dayClick() {
+      if (this.currentIndex == 1) return;
+      if (monthChart) monthChart.destroy();
+      if (currentChart) currentChart.destroy();
+      this.currentIndex = 1;
+      this.drawDayChart();
+    },
+    monthClick() {
+      if (this.currentIndex == 2) return;
+      clearInterval(this._wzlFetchInte);
+      if (dayChart) dayChart.destroy();
+      if (currentChart) currentChart.destroy();
+      this.currentIndex = 2;
+      this.drawMonthChart();
+    },
+    drawCurrentChart() {
+      const config = {
+        color: ['#5B8FF9', '#5AD8A6'],
+        legend: {},
+        padding: 'auto',
+        point: {},
+        xField: 'x',
+        yField: 'y',
+        seriesField: 'series',
+        stepType: 'hv',
+        yAxis: false,
+        label: {
+          visible: true
+        },
+        lineStyle: {
+          lineWidth: 2,
+          shadowColor: '#ccc',
+          shadowBlur: 3,
+          shadowOffsetX: 5,
+          shadowOffsetY: 5,
+          cursor: 'pointer'
+        },
+        meta: {
+          y: {
+            formatter: v => parseFloat(v).toFixed(1) + ' kw·h'
+          }
+        }
       };
-    },
-    mounted() {
-      this.fetchData();
-    },
-    methods: {
-      async fetchData() {
-        const {
-          data
-        } = await getElecInfoByMonth();
-        this.elecInfoByMonthList = data;
-        this.drawCurrentChart();
-      },
-      currentClick() {
-       if (this.currentIndex == 0) return;
-        columnPlot.destroy()
-        this.currentIndex = 0
-        this.chartType = "current"
-        this.drawCurrentChart()
-      },
-      monthClick() {
-       if (this.currentIndex == 1) return;
-       clearInterval(this._wzlFetchInte)
-        line.destroy();
-        this.currentIndex = 1
-        this.chartType = "month"
-        this.drawMonthChart()
-      },
-      drawCurrentChart() {
-        line = new Line('elecChart', {
-          data: this.getCurrentData(),
-          padding: 'auto',
-          xField: 'x',
-          yField: 'y',
-          xAxis: {
-            type: 'time',
-            mask: 'HH:MM:ss',
-          },
-          stepType: 'hv',
-        });
-
-        line.render();
-        this._wzlFetchInte = setInterval(()=>{
-          const x = new Date().getTime(),
-            y = Math.random() + 0.2;
-          const newData = line.options.data.slice(1).concat({
+      currentChart = new Line('elecChart', {
+        data: this.getCurrentData(),
+        ...config
+      });
+      setInterval(() => {
+        const x = moment().format('HH:mm:ss'),
+          y = Math.random() + 0.2,
+          y2 = Math.random() + 1.2;
+        const newData = currentChart.options.data.slice(2).concat(
+          {
+            series: '电表1',
             x,
             y
-          });
-          line.changeData(newData);
-        }, 2000);
-      },
-      drawMonthChart() {
-        columnPlot = new Column('elecChart', {
-          data: this.elecInfoByMonthList,
-          padding: 'auto',
-          xField: 'month',
-          yField: 'value',
-          meta: {
-            value: {
-              alias: '月用电量',
-            },
-            month: {
-              formatter: (val) => `${val} 月`,
-            },
           },
-          xAxis: {
-            label: {
-              autoHide: true,
-              autoRotate: false,
-            },
+          {
+            series: '电表2',
+            x,
+            y: y2
+          }
+        );
+        currentChart.changeData(newData);
+      }, 5000);
+      currentChart.render();
+    },
+    async drawDayChart() {
+      const { data } = await getElecInfoByDay();
+      //this.elecInfoByMonthList = data;
+      dayChart = new Column('elecChart', {
+        data,
+        padding: 'auto',
+        xField: 'day',
+        yField: 'value',
+        label: {},
+        meta: {
+          value: {
+            alias: '日用电量',
+            formatter: val => `${val} MW·h`
           },
-        });
-        columnPlot.render();
-      },
-      getCurrentData() {
-        const data = [];
-        const time = new Date().getTime();
-        for (let i = -9; i <= 0; i += 1) {
-          data.push({
-            x: time + i * 1000,
-            y: Math.random() + 0.2,
-          });
+          day: {
+            formatter: val => `${val} 日`
+          }
         }
-        return data
+      });
+      dayChart.render();
+    },
+    async drawMonthChart() {
+      const { data } = await getElecInfoByMonth();
+     // this.elecInfoByMonthList = data;
+      monthChart = new Column('elecChart', {
+        data,
+        padding: 'auto',
+        xField: 'month',
+        yField: 'value',
+        label: {},
+        meta: {
+          value: {
+            alias: '月用电量',
+            formatter: val => `${val} MW·h`
+          },
+          month: {
+            formatter: val => `${val} 月`
+          }
+        }
+      });
+      monthChart.render();
+    },
+    getCurrentData() {
+      const data = [];
+      const time = new Date().getTime();
+      for (let i = -9; i <= 0; i += 1) {
+        data.push(
+          {
+            series: '电表1',
+            x: moment(time + i * 5000).format('HH:mm:ss'),
+            y: Math.random() + 0.2
+          },
+          {
+            series: '电表2',
+            x: moment(time + i * 5000).format('HH:mm:ss'),
+            y: Math.random() + 1.2
+          }
+        );
       }
+      return data;
     }
-  };
+  }
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

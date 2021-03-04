@@ -3,10 +3,10 @@
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8"><project-info /></el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8"><leader-info /></el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="8"><elec-info /></el-col>
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8"><elec-info /></el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="8">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="8">
         <el-card>
           <div slot="header">
             PRO版

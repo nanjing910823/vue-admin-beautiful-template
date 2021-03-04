@@ -39,7 +39,21 @@ const leaderInfoList = mock({
   }]
 })
 
-const elecInfoByMonthList = [
+const elecInfoByMonthList = mock({
+  'dataList|12':[{
+    'month|+1':["1","2","3","4","5","6","7","8","9","10","11","12"],
+    'value|50-150':50
+  }]
+})
+
+const elecInfoByDayList = mock({
+  'dataList|31':[{
+    'day|+1':["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
+    'value|5-20.1':5
+  }]
+})
+
+/* const elecInfoByMonthList = [
   { month: '1', value: 1078 },
   { month: '2', value: 1216 },
   { month: '3', value: 758 },
@@ -53,7 +67,7 @@ const elecInfoByMonthList = [
   { month: '11', value: 1388 },
   { month: '12', value: 597 },
 ];
-
+ */
 module.exports = [{
   url: '/component/getLeaderInfoList',
   type: 'get',
@@ -71,7 +85,17 @@ module.exports = [{
     return {
       code: 200,
       msg: 'success',
-      data: elecInfoByMonthList,
+      data: elecInfoByMonthList.dataList,
+    }
+  },
+},{
+  url: '/component/getElecInfoByDay',
+  type: 'get',
+  response() {
+    return {
+      code: 200,
+      msg: 'success',
+      data: elecInfoByDayList.dataList,
     }
   },
 }, ]

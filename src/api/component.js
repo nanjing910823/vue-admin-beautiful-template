@@ -9,10 +9,19 @@ export function getLeaderInfoList(data) {
   })
 }
 
-//获取电表全部信息
+//按月获取电表全部信息
 export function getElecInfoByMonth(data) {
   return request({
     url: '/component/getElecInfoByMonth',
+    method: 'get',
+    data,
+  })
+}
+
+//按天获取电表全部信息
+export function getElecInfoByDay(data) {
+  return request({
+    url: '/component/getElecInfoByDay',
     method: 'get',
     data,
   })
