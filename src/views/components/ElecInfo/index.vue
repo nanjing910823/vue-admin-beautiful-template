@@ -7,8 +7,8 @@
       </span>
       <div>
         <el-button :type="currentIndex === 0 ? 'primary' : 'plain'" @click="btnClick(0)">实时</el-button>
-        <el-button :type="currentIndex === 1 ? 'primary' : 'plain'" @click="btnClick(1)">日</el-button>
-        <el-button :type="currentIndex === 2 ? 'primary' : 'plain'" @click="btnClick(2)">月</el-button>
+        <el-button :type="currentIndex === 1 ? 'primary' : 'plain'" @click="btnClick(1)">日统计</el-button>
+        <el-button :type="currentIndex === 2 ? 'primary' : 'plain'" @click="btnClick(2)">月统计</el-button>
       </div>
     </div>
     <div id="elecChart"></div>
@@ -26,8 +26,8 @@ export default {
   name: 'ElecInfo',
   data() {
     return {
-      lastIndex:0,
-      currentIndex: 0,
+      lastIndex: 0,
+      currentIndex: 0
       //elecInfoByMonthList: []
     };
   },
@@ -38,24 +38,25 @@ export default {
     fetchData() {
       this.drawCurrentChart();
     },
-    btnClick(index){
-      if(this.currentIndex === index) return;
+    btnClick(index) {
+      clearInterval(this._wzlFetchInte);
+      if (this.currentIndex === index) return;
       this.lastIndex = this.currentIndex;
       this.currentIndex = index;
-      switch (this.lastIndex){
+      switch (this.lastIndex) {
         case 0:
           currentChart.destroy();
           break;
         case 1:
-         dayChart.destroy();
+          dayChart.destroy();
           break;
         case 2:
-         monthChart.destroy();
+          monthChart.destroy();
           break;
         default:
           break;
       }
-      switch (index){
+      switch (index) {
         case 0:
           this.drawCurrentChart();
           break;
@@ -100,7 +101,7 @@ export default {
         xField: 'x',
         yField: 'y',
         seriesField: 'series',
-        stepType: 'hv',
+        stepType: 'hvh',
         yAxis: false,
         label: {
           visible: true
@@ -146,12 +147,13 @@ export default {
     async drawDayChart() {
       const { data } = await getElecInfoByDay();
       //this.elecInfoByMonthList = data;
-      dayChart = new Column('elecChart', {
+      dayChart = new Line('elecChart', {
         data,
         padding: 'auto',
         xField: 'day',
         yField: 'value',
-        label: {},
+        smooth: true,
+        point: {},
         meta: {
           value: {
             alias: '日用电量',
@@ -166,7 +168,7 @@ export default {
     },
     async drawMonthChart() {
       const { data } = await getElecInfoByMonth();
-     // this.elecInfoByMonthList = data;
+      // this.elecInfoByMonthList = data;
       monthChart = new Column('elecChart', {
         data,
         padding: 'auto',
