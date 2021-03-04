@@ -18,7 +18,7 @@
 <script>
 import moment from 'moment';
 import { getElecInfoByMonth, getElecInfoByDay } from '@/api/component';
-import { Line, Column } from '@antv/g2plot';
+import { Line, Column,Area } from '@antv/g2plot';
 let monthChart = null;
 let currentChart = null;
 let dayChart = null;
@@ -39,12 +39,12 @@ export default {
       this.drawCurrentChart();
     },
     btnClick(index) {
-      clearInterval(this._wzlFetchInte);
       if (this.currentIndex === index) return;
       this.lastIndex = this.currentIndex;
       this.currentIndex = index;
       switch (this.lastIndex) {
         case 0:
+         clearInterval(this.currentChartInte);
           currentChart.destroy();
           break;
         case 1:
@@ -70,7 +70,7 @@ export default {
           break;
       }
     },
-    currentClick() {
+    /* currentClick() {
       if (this.currentIndex == 0) return;
       if (dayChart) dayChart.destroy();
       if (monthChart) monthChart.destroy();
@@ -91,7 +91,7 @@ export default {
       if (currentChart) currentChart.destroy();
       this.currentIndex = 2;
       this.drawMonthChart();
-    },
+    }, */
     drawCurrentChart() {
       const config = {
         color: ['#5B8FF9', '#5AD8A6'],
@@ -101,7 +101,7 @@ export default {
         xField: 'x',
         yField: 'y',
         seriesField: 'series',
-        stepType: 'hvh',
+        stepType: 'hv',
         yAxis: false,
         label: {
           visible: true
@@ -109,7 +109,7 @@ export default {
         lineStyle: {
           lineWidth: 2,
           shadowColor: '#ccc',
-          shadowBlur: 3,
+          shadowBlur: 2,
           shadowOffsetX: 5,
           shadowOffsetY: 5,
           cursor: 'pointer'
@@ -124,7 +124,8 @@ export default {
         data: this.getCurrentData(),
         ...config
       });
-      setInterval(() => {
+      currentChart.render();
+      this.currentChartInte = setInterval(() => {
         const x = moment().format('HH:mm:ss'),
           y = Math.random() + 0.2,
           y2 = Math.random() + 1.2;
@@ -142,18 +143,20 @@ export default {
         );
         currentChart.changeData(newData);
       }, 5000);
-      currentChart.render();
     },
     async drawDayChart() {
       const { data } = await getElecInfoByDay();
-      //this.elecInfoByMonthList = data;
-      dayChart = new Line('elecChart', {
+      dayChart = new Area('elecChart', {
         data,
         padding: 'auto',
         xField: 'day',
         yField: 'value',
-        smooth: true,
-        point: {},
+        xAxis:{
+          tickCount:6
+        },
+        areaStyle:{
+         fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9',
+        },
         meta: {
           value: {
             alias: '日用电量',
@@ -175,6 +178,9 @@ export default {
         xField: 'month',
         yField: 'value',
         label: {},
+        columnStyle: {
+          fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9',
+        },
         meta: {
           value: {
             alias: '月用电量',
