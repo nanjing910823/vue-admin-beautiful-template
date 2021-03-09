@@ -53,7 +53,6 @@
             <el-table-column align="center" prop="post" label="职务">
               <template slot-scope="scope">
                 <el-tag :effect="scope.$index === 0 ? 'light' : 'plain'" size="medium">{{ scope.row.post }}</el-tag>
-                <!-- <el-tag :type="scope.$index === 0 ? 'danger' : ''" :effect="scope.$index === 0 ? '' : 'plain'" size="medium">{{ scope.row.post }}</el-tag> -->
               </template>
             </el-table-column>
           </el-table>

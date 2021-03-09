@@ -28,7 +28,6 @@ export default {
     return {
       lastIndex: 0,
       currentIndex: 0
-      //elecInfoByMonthList: []
     };
   },
   mounted() {
@@ -70,28 +69,6 @@ export default {
           break;
       }
     },
-    /* currentClick() {
-      if (this.currentIndex == 0) return;
-      if (dayChart) dayChart.destroy();
-      if (monthChart) monthChart.destroy();
-      this.currentIndex = 0;
-      this.drawCurrentChart();
-    },
-    dayClick() {
-      if (this.currentIndex == 1) return;
-      if (monthChart) monthChart.destroy();
-      if (currentChart) currentChart.destroy();
-      this.currentIndex = 1;
-      this.drawDayChart();
-    },
-    monthClick() {
-      if (this.currentIndex == 2) return;
-      clearInterval(this._wzlFetchInte);
-      if (dayChart) dayChart.destroy();
-      if (currentChart) currentChart.destroy();
-      this.currentIndex = 2;
-      this.drawMonthChart();
-    }, */
     drawCurrentChart() {
       const config = {
         color: ['#5B8FF9', '#5AD8A6'],
