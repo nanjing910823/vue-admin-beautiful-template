@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 
+//获取劳务人员信息
+export function getUserInfoList(data) {
+  return request({
+    url: '/component/getUserInfoList',
+    method: 'get',
+    data,
+  })
+}
+
 //获取项目负责人信息
 export function getLeaderInfoList(data) {
   return request({

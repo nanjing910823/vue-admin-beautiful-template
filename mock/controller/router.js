@@ -12,6 +12,39 @@ const data = [{
         affix: true,
       },
     }, ],
+  },{
+    path: '/employeeManagement',
+    component: 'Layout',
+    redirect: 'noRedirect',
+    meta: {
+      title: '人员管理',
+      icon: 'users-cog'
+    },
+    children: [{
+        path: 'userManagement',
+        name: 'UserManagement',
+        component: '@/views/userManagement/index',
+        meta: {
+          title: '劳务人员管理'
+        },
+      },
+      {
+        path: 'roleManagement',
+        name: 'RoleManagement',
+        component: '@/views/index/index',
+        meta: {
+          title: '考勤系统管理'
+        },
+      },
+      {
+        path: 'menuManagement',
+        name: 'MenuManagement',
+        component: '@/views/index/index',
+        meta: {
+          title: '访客通行管理'
+        },
+      },
+    ],
   },
   /* {
     path: '/bimView',
