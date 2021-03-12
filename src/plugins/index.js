@@ -1,4 +1,8 @@
 /* 公共引入,勿随意修改,修改时需经过确认 */
+import "@/styles/colorui/main.css";
+import "@/styles/colorui/icon.css";
+import "@/styles/colorui/animation.css";
+
 import Vue from 'vue'
 import './element'
 import './support'
