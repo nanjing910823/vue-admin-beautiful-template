@@ -9,6 +9,15 @@ export function getUserInfoList(data) {
   })
 }
 
+//获取劳务人员占比
+export function getUserTypeList(data) {
+  return request({
+    url: '/component/getUserTypeList',
+    method: 'get',
+    data,
+  })
+}
+
 //获取项目负责人信息
 export function getLeaderInfoList(data) {
   return request({
