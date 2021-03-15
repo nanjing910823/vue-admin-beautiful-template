@@ -1,5 +1,5 @@
 <template>
-  <el-tabs v-model="activeIndex" tab-position="left" :stretch="true" @tab-click="tabClick">
+  <el-tabs v-model="activeIndex" tab-position="top" @tab-click="tabClick">
     <vab-query-form class="animation-fade" style="animation-delay: 1.2s;">
       <vab-query-form-left-panel>
         <el-button icon="el-icon-plus" type="success" @click="handleAdd">新增</el-button>

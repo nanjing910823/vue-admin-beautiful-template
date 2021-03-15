@@ -45,6 +45,20 @@ export default {
               },
               line: {},
               point: { style: { r: 2.5 } },
+              areaStyle: ({ header }) => {
+                const { colors10 } = plot.chart.getTheme();
+                let fillColor = '';
+                if (header === '学校教师') {
+                  fillColor = `l(90) 0.3:${colors10[0]} 1:rgba(255,255,255,0.2)`;
+                } else if (header === '普通职工') {
+                  fillColor = `l(90) 0.3:${colors10[1]} 1:rgba(255,255,255,0.2)`;
+                } else {
+                  fillColor = `l(90) 0.3:${colors10[2]} 1:rgba(255,255,255,0.2)`;
+                }
+                return {
+                  fill: fillColor
+                };
+              },
               smooth: true,
               tooltip: {
                 showCrosshairs: true,
@@ -57,7 +71,7 @@ export default {
             region: { start: { x: 0.5, y: 0 }, end: { x: 1, y: 0.3 } },
             options: {
               data: data.pie,
-              radius: 0.65,
+              radius: 0.85,
               angleField: 'total',
               colorField: 'header',
               tooltip: {
@@ -116,7 +130,21 @@ export default {
                   autoRotate: false
                 }
               },
-              yAxis: false
+              yAxis: false,
+              columnStyle: ({ header }) => {
+                const { colors10 } = plot.chart.getTheme();
+                let fillColor = '';
+                if (header === '学校教师') {
+                  fillColor = `l(90) 0:${colors10[0]} 1:#FFFFFF`;
+                } else if (header === '普通职工') {
+                  fillColor = `l(90) 0:${colors10[1]} 1:#FFFFFF`;
+                } else {
+                  fillColor = `l(90) 0:${colors10[2]} 1:#FFFFFF`;
+                }
+                return {
+                  fill: fillColor
+                };
+              },
             }
           },
           {
@@ -127,6 +155,7 @@ export default {
               xField: 'count',
               yField: 'header',
               seriesField: 'type',
+              xAxis: false,
               isStack: true,
               tooltip: {
                 shared: true,
