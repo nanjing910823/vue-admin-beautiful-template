@@ -2,7 +2,8 @@
   <div :class="'logo-container-' + layout">
     <router-link to="/">
       <!-- 这里是logo变更的位置 -->
-      <vab-remix-icon v-if="logo" class="logo" :icon-class="logo" />
+      <img class="logo" src="@/assets/bim-logo.png" alt="">
+      <!-- <vab-remix-icon v-if="logo" class="logo" :icon-class="logo" /> -->
       <span
         class="title"
         :class="{ 'hidden-xs-only': layout === 'horizontal' }"
@@ -42,9 +43,9 @@
   }
 
   @mixin logo {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
+    // display: inline-block;
+    width: 40px;
+    height: 30px;
     margin-right: 5px;
     color: $base-title-color;
     vertical-align: middle;

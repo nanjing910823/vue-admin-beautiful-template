@@ -8,7 +8,7 @@
     <footer v-show="footerCopyright" class="footer-copyright">
       Copyright
       <vab-icon :icon="['fas', 'copyright']"></vab-icon>
-      江苏东曌建筑产业创新发展研究院-LNG智慧运维项目 {{ fullYear }}
+      江苏东曌建筑产业创新发展研究院-中央商务区智慧运维项目 {{ fullYear }}
     </footer>
   </div>
 </template>

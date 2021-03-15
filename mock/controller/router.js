@@ -21,24 +21,24 @@ const data = [{
       icon: 'users-cog'
     },
     children: [{
-        path: 'userManagement',
-        name: 'UserManagement',
-        component: '@/views/userManagement/index',
+        path: 'labourManagement',
+        name: 'LabourManagement',
+        component: '@/views/labourManagement/index',
         meta: {
           title: '劳务人员管理'
         },
       },
       {
-        path: 'roleManagement',
-        name: 'RoleManagement',
+        path: 'attendanceManagement',
+        name: 'AttendanceManagement',
         component: '@/views/index/index',
         meta: {
           title: '考勤系统管理'
         },
       },
       {
-        path: 'menuManagement',
-        name: 'MenuManagement',
+        path: 'vistorManagement',
+        name: 'VistorManagement',
         component: '@/views/index/index',
         meta: {
           title: '访客通行管理'
@@ -46,7 +46,7 @@ const data = [{
       },
     ],
   },
-  /* {
+  {
     path: '/bimView',
     component: 'Layout',
     redirect: 'noRedirect',
@@ -61,54 +61,6 @@ const data = [{
     }, ],
   },
   {
-    path: '/energyManagement',
-    component: 'Layout',
-    redirect: 'noRedirect',
-    children: [{
-      path: 'index',
-      name: 'Index',
-      component: '@/views/index/index',
-      meta: {
-        title: '能源监控',
-        icon: 'radiation'
-      },
-    }, ],
-  },
-  {
-    path: '/employeeManagement',
-    component: 'Layout',
-    redirect: 'noRedirect',
-    meta: {
-      title: '人员管理',
-      icon: 'users-cog'
-    },
-    children: [{
-        path: 'userManagement',
-        name: 'UserManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '劳务人员管理'
-        },
-      },
-      {
-        path: 'roleManagement',
-        name: 'RoleManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '考勤系统管理'
-        },
-      },
-      {
-        path: 'menuManagement',
-        name: 'MenuManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '访客通行管理'
-        },
-      },
-    ],
-  },
-  {
     path: '/monitorManagement',
     component: 'Layout',
     redirect: 'noRedirect',
@@ -117,27 +69,19 @@ const data = [{
       icon: 'chart-bar'
     },
     children: [{
-        path: 'userManagement',
-        name: 'UserManagement',
+        path: 'fenceManagement',
+        name: 'FenceManagement',
         component: '@/views/index/index',
         meta: {
           title: '电子围栏'
         },
       },
       {
-        path: 'roleManagement',
-        name: 'RoleManagement',
+        path: 'envManagement',
+        name: 'EnvManagement',
         component: '@/views/index/index',
         meta: {
-          title: '下发报警'
-        },
-      },
-      {
-        path: 'menuManagement',
-        name: 'MenuManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '运行监测'
+          title: '环境监测'
         },
       },
     ],
@@ -151,77 +95,35 @@ const data = [{
       icon: 'network-wired'
     },
     children: [{
-        path: 'userManagement',
-        name: 'UserManagement',
+        path: 'ledgerManagement',
+        name: 'LedgerManagement',
         component: '@/views/index/index',
         meta: {
           title: '设备台账管理'
         },
       },
       {
-        path: 'roleManagement',
-        name: 'RoleManagement',
+        path: 'alertManagement',
+        name: 'AlertManagement',
         component: '@/views/index/index',
         meta: {
           title: '设备告警管理'
         },
       },
       {
-        path: 'menuManagement',
-        name: 'MenuManagement',
+        path: 'maintainManagement',
+        name: 'MaintainManagement',
         component: '@/views/index/index',
         meta: {
           title: '设备保养管理'
         },
       },
       {
-        path: 'menuManagement',
-        name: 'MenuManagement',
+        path: 'troubleManagement',
+        name: 'TroubleManagement',
         component: '@/views/index/index',
         meta: {
           title: '设备故障处理'
-        },
-      },
-    ],
-  },
-  {
-    path: '/storageManagement',
-    component: 'Layout',
-    redirect: 'noRedirect',
-    meta: {
-      title: '仓储管理',
-      icon: 'coins'
-    },
-    children: [{
-        path: 'menuManagement',
-        name: 'MenuManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '储罐台账管理'
-        },
-      },
-      {
-        path: 'userManagement',
-        name: 'UserManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '储罐计量管理'
-        },
-      },
-      {
-        path: 'roleManagement',
-        name: 'RoleManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '计量作业管理'
-        },
-      },
-      {
-        path: 'menuManagement',
-        name: 'MenuManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '储罐盘点管理'
         },
       },
     ],
@@ -234,25 +136,18 @@ const data = [{
       title: '物料管理',
       icon: 'cubes'
     },
-    children: [{
-        path: 'menuManagement',
-        name: 'MenuManagement',
-        component: '@/views/index/index',
-        meta: {
-          title: '仓库档案管理'
-        },
-      },
+    children: [
       {
-        path: 'userManagement',
-        name: 'UserManagement',
+        path: 'ledgerManagement',
+        name: 'LedgerManagement',
         component: '@/views/index/index',
         meta: {
           title: '物料库存管理'
         },
       },
       {
-        path: 'userManagement',
-        name: 'UserManagement',
+        path: 'stockManagement',
+        name: 'StockManagement',
         component: '@/views/index/index',
         meta: {
           title: '物料盘点管理'
@@ -295,7 +190,7 @@ const data = [{
         },
       },
     ],
-  }, */
+  },
   /* {
      path: '/error',
      component: 'EmptyLayout',
