@@ -18,7 +18,7 @@
 <script>
 import moment from 'moment';
 import { getElecInfoByMonth, getElecInfoByDay } from '@/api/component';
-import { Line, Column,Area } from '@antv/g2plot';
+import { Line, Column, Area } from '@antv/g2plot';
 let monthChart = null;
 let currentChart = null;
 let dayChart = null;
@@ -33,6 +33,9 @@ export default {
   mounted() {
     this.fetchData();
   },
+  beforeDestroy() {
+    clearInterval(this.currentChartInte);
+  },
   methods: {
     fetchData() {
       this.drawCurrentChart();
@@ -43,7 +46,7 @@ export default {
       this.currentIndex = index;
       switch (this.lastIndex) {
         case 0:
-         clearInterval(this.currentChartInte);
+          clearInterval(this.currentChartInte);
           currentChart.destroy();
           break;
         case 1:
@@ -128,11 +131,11 @@ export default {
         padding: 'auto',
         xField: 'day',
         yField: 'value',
-        xAxis:{
-          tickCount:6
+        xAxis: {
+          tickCount: 6
         },
-        areaStyle:{
-         fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9',
+        areaStyle: {
+          fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9'
         },
         meta: {
           value: {
@@ -156,7 +159,7 @@ export default {
         yField: 'value',
         label: {},
         columnStyle: {
-          fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9',
+          fill: 'l(270) 0:#FFFFFF 0.5:#7EC2F3 1:#5B8FF9'
         },
         meta: {
           value: {

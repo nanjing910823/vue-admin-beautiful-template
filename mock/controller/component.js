@@ -75,15 +75,15 @@ const userTypeList = mock({
     }, {
       'header': '管理人员',
       'type': '督导',
-      'count|0-3': 1
+      'count|2-5': 2
     }, {
       'header': '管理人员',
       'type': '校长',
-      'count|0-3': 1
+      'count|2-3': 2
     }, {
       'header': '管理人员',
       'type': '董事',
-      'count|0-3': 1
+      'count|2-3': 2
     }, {
       'header': '管理人员',
       'type': '管理员',
@@ -98,7 +98,128 @@ const userTypeList = mock({
     },{
         'header': '管理人员',
         'total|5-10': 5
-      
+    }],
+    'column':[{
+      'header': '学校教师',
+      'type':'25-30岁',
+      'value|5-10':5
+    },{
+      'header': '学校教师',
+      'type':'31-35岁',
+      'value|15-20':15
+    },{
+      'header': '学校教师',
+      'type':'36-40岁',
+      'value|10-15':10
+    },{
+      'header': '学校教师',
+      'type':'41-50',
+      'value|5-15':10
+    },{
+      'header': '学校教师',
+      'type':'50+岁',
+      'value|5-10':5
+    },{
+      'header': '普通职工',
+      'type':'25-30岁',
+      'value|1-5':1
+    },{
+      'header': '普通职工',
+      'type':'31-35岁',
+      'value|15-20':15
+    },{
+      'header': '普通职工',
+      'type':'36-40岁',
+      'value|10-15':10
+    },{
+      'header': '普通职工',
+      'type':'41-50',
+      'value|5-15':10
+    },{
+      'header': '普通职工',
+      'type':'50+岁',
+      'value|5-10':5
+    },{
+      'header': '管理人员',
+      'type':'25-30岁',
+      'value|1-5':1
+    },{
+      'header': '管理人员',
+      'type':'31-35岁',
+      'value|1-5':1
+    },{
+      'header': '管理人员',
+      'type':'36-40岁',
+      'value|1-5':1
+    },{
+      'header': '管理人员',
+      'type':'41-50',
+      'value|1-5':1
+    },{
+      'header': '管理人员',
+      'type':'50+岁',
+      'value|2-5':1
+    }],
+    'ageColumn':[{
+      'header': '学校教师',
+      'age':'<1年',
+      'value|5-10':5
+    },{
+      'header': '学校教师',
+      'age':'1-3年',
+      'value|20-40':20
+    },{
+      'header': '学校教师',
+      'age':'4-7年',
+      'value|10-15':10
+    },{
+      'header': '学校教师',
+      'age':'8-10年',
+      'value|10-15':10
+    },{
+      'header': '学校教师',
+      'age':'>10年',
+      'value|5-10':10
+    },{
+      'header': '普通职工',
+      'age':'<1年',
+      'value|5-10':5
+    },{
+      'header': '普通职工',
+      'age':'1-3年',
+      'value|10-15':10
+    },{
+      'header': '普通职工',
+      'age':'4-7年',
+      'value|20-35':20
+    },{
+      'header': '普通职工',
+      'age':'8-10年',
+      'value|20-35':20
+    },{
+      'header': '普通职工',
+      'age':'>10年',
+      'value|2-8':2
+    },{
+      'header': '管理人员',
+      'age':'<1年',
+      'value':0
+    },{
+      'header': '管理人员',
+      'age':'1-3年',
+      'value|2-3':2
+    },{
+      'header': '管理人员',
+      'age':'4-7年',
+      'value|5-10':2
+    },{
+      'header': '管理人员',
+      'age':'8-10年',
+      'value|2-5':2
+    },{
+      'header': '管理人员',
+      'age':'>10年',
+      'value|2-5':2
     }]
 })
 
