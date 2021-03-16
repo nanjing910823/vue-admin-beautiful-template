@@ -177,5 +177,6 @@ export default {
 <style lang="scss">
 .chart-container {
   padding: 20px 15px;
+  margin: 20px 0px;
 }
 </style>
